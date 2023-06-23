@@ -1,12 +1,12 @@
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 
-const Task = () => {
+const Task = ({task}) => {
     return (
         <View style = {styles.item}>
             <View style={styles.itemLeft}>
-                <Image style={styles.image} source={{uri: Task.urls.raw}} />
-                <Text style></Text>
+                <Image style={styles.image} source={{uri: task.urls.raw}} />
+                <Text style ={styles.itemText}>{task.alt_description}</Text>
             </View>
         </View>
     )
@@ -14,13 +14,27 @@ const Task = () => {
 
 const styles = StyleSheet.create({
     item: {
-
+        backgroundColor: "#FFF",
+        padding: 15,
+        borderRadius: 15,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        margin: 20
     },
     itemLeft:{
-
+        flexDirection: "row",
+        alignItems: "center",
+        flexWrap: "wrap"
     },
     image:{
-
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        marginRight:15
+    },
+    itemText:{
+        maxWidth: "80%"
     }
 })
 

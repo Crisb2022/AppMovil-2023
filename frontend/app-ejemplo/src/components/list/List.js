@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Touchable, TouchableOpacity } from "react-native";
-import { FlatList, View } from "react-native";
+import { FlatList, View, StyleSheet, Text } from "react-native";
 
 
 
@@ -23,10 +23,10 @@ const Listcomponent= () =>{
         }
     }
 
-    const item = () =>{
+    const item = ({task, i}) =>{
         return (
-            <TouchableOpacity style={styles.peritem} key={i} onPress={() =>{getProfile()}}>
-                <Task></Task>
+            <TouchableOpacity style={styles.peritem} key={i} onPress={() =>{getProfile(task)}}>
+                <Task task={task}/>
             </TouchableOpacity>
         )
     }
@@ -34,14 +34,14 @@ const Listcomponent= () =>{
     return( taskItems &&
         <View style={styles.container}>
             <View style={styles.taskWrapper}> 
-                <Text style={styles.sectiontitle}>Se listan los perfinles</Text>
+                <Text style={styles.sectiontitle}>Se listan los perfiles</Text>
                 <View style={styles.items}>
                     <FlatList>
-                        data = {}
+                        data = {taskItems}
+                        renderitem={({item,i}) => <Item task={item} i={i}/>}
                     </FlatList>
                 </View>
             </View>
-            Hola
         </View>
     )
 }

@@ -1,8 +1,11 @@
 import React from "react";
-import { StyleSheet,  View, Image, Text} from "react-native";
+import { StyleSheet,  View, Image, Text, Linking} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 const twitter = <Icon name="twitter" size={30} color={"black"}/>
+const facebook = <Icon name="facebook" size={30} color={"black"}/>
+const instagram = <Icon name="instagram" size={30} color={"black"}/>
+const linkdIn = <Icon name="linkedin" size={30} color={"black"}/>
 
 const ProfileCard = () => {
     const user = { 
@@ -20,8 +23,17 @@ const ProfileCard = () => {
                 </Text>
             </View>
             <View style={styles.buttonContainer}>
-                <Text style={{color: "blue"}} onPress={()=> Linking.openURL("twitter.com")}>
-
+                <Text style={{color: "blue"}} onPress={()=> Linking.openURL("https://www.twitter.com")}>
+                    {twitter}
+                </Text>
+                <Text style={{color: "blue"}} onPress={()=> Linking.openURL("https://www.facebook.com")}>
+                    {facebook}
+                </Text>
+                <Text style={{color: "blue"}} onPress={()=> Linking.openURL("https://www.instagram.com")}>
+                    {instagram}
+                </Text>
+                <Text style={{color: "blue"}} onPress={()=> Linking.openURL("https://www.linkdIn.com")}>
+                    {linkdIn}
                 </Text>
             </View>
         </View>
@@ -48,14 +60,17 @@ const styles = StyleSheet.create(
             height: 150,
             borderRadius: 75,
             borderWidth: 5,
-
+            borderColor: "white"
         },
         name: {
             marginTop: 15,
             fontSize: 20,
             fontWeight: "bold"
         }, buttonContainer:{
-            flexDirection: "row",
+            flexDirection: "row", 
+            marginTop: 20,
+            width: "60%",
+            justifyContent: "space-between"
         }
     }
 ) 

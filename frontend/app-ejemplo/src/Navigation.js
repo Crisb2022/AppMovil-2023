@@ -23,7 +23,7 @@ const Navigation = () => {
             <tab.Screen name="List" component={Listcomponent} options={{
                 tabBarLabel: "Listado",
                 tabBarIcon: ({ color, size }) => {
-                    <MaterialCommunityIcons name="clipboard" color={color} size={size} />
+                    <MaterialCommunityIcons name="clipboard-list" color={color} size={size} />
                 }
             }}>
             </tab.Screen>
