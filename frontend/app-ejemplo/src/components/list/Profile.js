@@ -7,7 +7,7 @@ const instagram_username = <Icon name="instagram" size={30} color="black"/>
 const portafolio_url = <Icon name="globe" size={30} color="black"/>
 
 
-const Profile = ({task}) => {
+const Profile = ({task, closeProfile}) => {
     return (
         <View styles={styles.item}>
             <View styles={styles.supimage}>
@@ -39,6 +39,11 @@ const Profile = ({task}) => {
                     <Image style={styles.image2} source={require('../../../assets/like.png')}/>
                     </View>
             </View>
+            <a onClick={
+                closeProfile
+            }>
+                CERRAR
+            </a>
         </View>
     )
 }
