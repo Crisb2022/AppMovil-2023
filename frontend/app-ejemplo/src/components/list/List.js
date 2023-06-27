@@ -3,6 +3,7 @@ import { Alert, Modal, Touchable, TouchableOpacity } from "react-native";
 import Task from "./Task";
 import { FlatList, View, StyleSheet, Text, Item } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import Profile from "./Profile";
 
 
 
@@ -100,10 +101,22 @@ const styles = StyleSheet.create({
         margin: 0,
         backgroundColor: "white",
         borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        width: "100%",
+        height: 300,
         textShadowOffset:{
             width: 0,
             height: 2
-        }
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    }, modalText:{
+        marginBottom: 15,
+        textAlign: "center",
+        width: "100%"
     }
 })
-export default Listcomponent
+export default Listcomponent;
