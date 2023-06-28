@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Formik } from 'formik';
 import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Modal } from "react-native";
 
 
@@ -8,12 +9,12 @@ const Name = () => {
     // Declaracion de variables
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
+    const [view, setView] = useState(false);
 
-    const handleSubmit = () => {
-        const nameCompleto = nombre + ' ' + apellido
-        console.log("Hola: ", nameCompleto)
+    function handleSubmit(nombre, apellido) {
+        console.log("Hola ", nombre, " ", apellido)
+
     }
-
     return <View>
         <Text style={styles.texto}> Formulario </Text>
         <TextInput style={styles.nameText}
@@ -26,12 +27,12 @@ const Name = () => {
             onChangeText={(text) => setApellido(text)} />
         <TouchableOpacity
             style={styles.colorBtn}
-            onPress={() => console.log("Hola ", nombre, " ", apellido)}
+            onPress={() => setView(true)}
         >
             <Text style={styles.colorTxtBtn}>Aceptar</Text>
         </TouchableOpacity>
 
-        
+
         <Modal
             // animacion
             animationType="fade"
@@ -41,15 +42,36 @@ const Name = () => {
             onShow={() => console.log('abierto')}
             // Prop validaciones booleanas
             transparent
-            visible
+            visible={view}
+        >
+            <View
+                style={{
+                    flex: 1,
+                    backgroundColor: 'rgba(1,1,1,0.5)',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}
             >
-            <View>
-                <Text style={styles.texto}>
-                    Hola {nombre} {apellido}
-                </Text>
+                <View
+                    style={{
+                        height: '80%',
+                        width: '90%',
+                        backgroundColor: '#FFF'
+                    }}
+                >
+                    <Text style={styles.texto}>
+                        Hola {nombre} {apellido}
+                    </Text>
+                    <TouchableOpacity
+                        onPress={() => setView(false)}
+                        style={styles.colorBtn}
+                    >
+                        <Text style={styles.colorTxtBtn}>Aceptar</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </Modal>
-        
+
     </View>
 }
 

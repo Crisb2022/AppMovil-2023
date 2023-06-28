@@ -9,7 +9,7 @@ const portafolio_url = <Icon name="globe" size={30} color="black"/>
 
 const Profile = ({task, closeProfile}) => {
     return (
-        <View styles={styles.item}>
+        <View styles={styles.items}>
             <View styles={styles.supimage}>
                 <View styles={styles.leftSide}>
                     <Image styles={styles.image} source = {{uri: task.url}}/>
