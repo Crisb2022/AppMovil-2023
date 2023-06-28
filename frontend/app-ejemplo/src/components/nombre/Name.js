@@ -15,13 +15,13 @@ const Name = () => {
         return nombreCompleto;
     }
     return <View>
-        <Text style={styles.texto}> Formulario </Text>
+        <Text style={styles.texto}> Ingreso de datos </Text>
         <TextInput style={styles.nameText}
-            placeholder="Nombre"
+            placeholder="Ingresar su nombre"
             value={nombre}
             onChangeText={(text) => setNombre(text)} />
         <TextInput style={styles.nameText}
-            placeholder="Apellidos"
+            placeholder="Ingresar su apellido"
             value={apellido}
             onChangeText={(text) => setApellido(text)} />
         <TouchableOpacity
@@ -78,8 +78,8 @@ const Name = () => {
 
 const styles = StyleSheet.create({
     texto: {
-        color: "black",
-        fontSize: 18,
+        color: "#2E86C1",
+        fontSize: 25,
         marginTop: 20,
         fontWeight: '600',
         padding: 4,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         borderWidth: 1,
         borderRadius: 7,
-        borderColor: "black",
+        borderColor: "#3498DB",
         paddingRight: 12,
     }, colorBtn: {
         borderWidth: 1,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         padding: 10,
         marginLeft: 20,
         marginRight: 20,
-        borderRadius: 7,
+        borderRadius: 7
     }, colorTxtBtn: {
         color: '#FFFFFF',
         fontSize: 20,
