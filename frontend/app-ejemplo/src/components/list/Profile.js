@@ -1,55 +1,54 @@
 import React from "react";
-import { Image, StyleSheet, Text, View, Linking } from "react-native";
+import { Image, StyleSheet, Text, View, Linking, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome"
 import Task from "./Task";
 
-const instagram_username = <Icon name="instagram" size={30} color="black"/>
-const portafolio_url = <Icon name="globe" size={30} color="black"/>
+const instagram_username = <Icon name="instagram" size={30} color="black" />
+const portafolio_url = <Icon name="globe" size={30} color="black" />
 
 
-const Profile = ({task, closeProfile}) => {
+const Profile = ({ task, closeProfile }) => {
     return (
         <View styles={styles.items}>
             <View styles={styles.supimage}>
                 <View styles={styles.leftSide}>
-                    <Image styles={styles.image} source = {{uri: task.url}}/>
+                    <Image styles={styles.image} source={{ uri: task.url }} />
                 </View>
                 <View styles={styles.rightside}>
-                    <Text style ={{color: "blue"}} onPress={() =>{
+                    <Text style={{ color: "blue" }} onPress={() => {
                         Linking.openUrl(task.user.portafolio_url)
                     }}>
                         {task.user.name}
                     </Text>
                 </View>
                 <View styles={styles.redes}>
-                    <Text style ={{color: "blue"}} onPress={() =>{
+                    <Text style={{ color: "blue" }} onPress={() => {
                         Linking.openUrl(task.user.social.instagram_username)
                     }}>
                         {instagram_username}
                     </Text>
-                    <Text style ={{color: "blue"}} onPress={() =>{
+                    <Text style={{ color: "blue" }} onPress={() => {
                         Linking.openUrl(task.user.portafolio_url)
                     }}>
                         {portafolio_url}
                     </Text>
                 </View>
-            </View>
-            <View style={styles.containerkpi}>
+                <View style={styles.containerkpi}>
                     <View style={styles.kpiR}>
-                    <Image style={styles.image2} source={require('../../../assets/like.png')}/>
+                        <Image style={styles.image2} source={require('../../../assets/like.png')} />
                     </View>
+                </View>
+                <Pressable onPress={() => closeProfile()}>
+                    <Text style={{ color: 'green', fontStyle: "bold"}} >CERRAR</Text>
+                </Pressable>
             </View>
-            <a onClick={
-                closeProfile
-            }>
-                CERRAR
-            </a>
+
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    items:{
+    items: {
         height: "100%",
         width: "100%",
         backgroundColor: "white",
@@ -57,38 +56,38 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "center",
         alignItems: "center"
-    }, supimage:{
+    }, supimage: {
         width: "100%",
         height: "100%",
         flexBasis: "70%",
         display: "flex",
-        flexDirection: "row"
-    }, leftSide:{
+        flexDirection: "column"
+    }, leftSide: {
         flexBasis: "50%",
-        display:"flex",
+        display: "flex",
         justifyContent: "center",
         alignItems: "center"
-    }, image:{
+    }, image: {
         width: 100,
         height: 100,
         borderRadius: 50
-    }, rightside:{
+    }, rightside: {
         flexBasis: "50%",
         display: "center",
         alignItems: "center",
         flexDirection: "column",
         justifyContent: "space-evenly"
-    }, redes:{
+    }, redes: {
         width: "100%",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
-        flexDirection: "row"
+        flexDirection: "column"
     }, containerkpi: {
-        width: "100",
+        width: "100%",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-around"
+        justifyContent: "space-between"
     }, kpiR: {
         width: 20
     }, image2: {
