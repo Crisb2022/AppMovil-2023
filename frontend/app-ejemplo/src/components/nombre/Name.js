@@ -12,7 +12,7 @@ const Name = () => {
     const [view, setView] = useState(false);
 
     function handleSubmit(nombre, apellido) {
-        const nombreCompleto = "Hola con el nombre: "+ nombre+ " "+ apellido+ " ";
+        const nombreCompleto = "Hola tu con el nombre: " + nombre + " " + apellido + " ";
         return nombreCompleto;
     }
     return <View>
@@ -31,7 +31,6 @@ const Name = () => {
         >
             <Text style={styles.colorTxtBtn}>Aceptar</Text>
         </TouchableOpacity>
-
 
         <Modal
             // animacion
@@ -54,13 +53,14 @@ const Name = () => {
             >
                 <View
                     style={{
-                        height: '80%',
+                        height: '20%',
                         width: '90%',
-                        backgroundColor: '#FFF'
+                        backgroundColor: '#FFF',
+                        borderRadius: 0.25
                     }}
                 >
                     <Text style={styles.texto}>
-                        {handleSubmit(nombre,apellido)}
+                        {handleSubmit(nombre, apellido)}
                     </Text>
                     <TouchableOpacity
                         onPress={() => setView(false)}
