@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Modal } from "react-native";
 
 
 
@@ -10,31 +10,46 @@ const Name = () => {
     const [apellido, setApellido] = useState('');
 
     const handleSubmit = () => {
-        console.log("Hola: ", nombre, " ",apellido)
+        const nameCompleto = nombre + ' ' + apellido
+        console.log("Hola: ", nameCompleto)
     }
 
     return <View>
         <Text style={styles.texto}> Formulario </Text>
         <TextInput style={styles.nameText}
-            placeholder="Nombre" 
+            placeholder="Nombre"
             value={nombre}
-            onChangeText={(text) => setNombre(text)}/>
+            onChangeText={(text) => setNombre(text)} />
         <TextInput style={styles.nameText}
-            placeholder="Apellidos" 
+            placeholder="Apellidos"
             value={apellido}
-            onChangeText={(text) => setApellido(text)}/>
+            onChangeText={(text) => setApellido(text)} />
         <TouchableOpacity
             style={styles.colorBtn}
-            onPress={handleSubmit}
+            onPress={() => console.log("Hola ", nombre, " ", apellido)}
         >
             <Text style={styles.colorTxtBtn}>Aceptar</Text>
         </TouchableOpacity>
 
-        <View>
-            <Text style={styles.texto}>
-                Hola {nombre} {apellido}
-            </Text>
-        </View>
+        
+        <Modal
+            // animacion
+            animationType="fade"
+            // accion al cerrar el modal
+            onDismiss={() => console.log('modal abierto')}
+            // accion al ejecutarse
+            onShow={() => console.log('abierto')}
+            // Prop validaciones booleanas
+            transparent
+            visible
+            >
+            <View>
+                <Text style={styles.texto}>
+                    Hola {nombre} {apellido}
+                </Text>
+            </View>
+        </Modal>
+        
     </View>
 }
 
