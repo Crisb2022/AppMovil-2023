@@ -12,8 +12,8 @@ const Name = () => {
     const [view, setView] = useState(false);
 
     function handleSubmit(nombre, apellido) {
-        console.log("Hola ", nombre, " ", apellido)
-
+        const nombreCompleto = "Hola con el nombre: "+ nombre+ " "+ apellido+ " ";
+        return nombreCompleto;
     }
     return <View>
         <Text style={styles.texto}> Formulario </Text>
@@ -60,13 +60,13 @@ const Name = () => {
                     }}
                 >
                     <Text style={styles.texto}>
-                        Hola {nombre} {apellido}
+                        {handleSubmit(nombre,apellido)}
                     </Text>
                     <TouchableOpacity
                         onPress={() => setView(false)}
                         style={styles.colorBtn}
                     >
-                        <Text style={styles.colorTxtBtn}>Aceptar</Text>
+                        <Text style={styles.colorTxtBtn}>Cerrar</Text>
                     </TouchableOpacity>
                 </View>
             </View>
