@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TextInput, TouchableOpacity } from 'react-native';
 import axios from 'axios';
+import ProfileCard from '../home/ProfileCard';
 
 const ChatGPT = () => {
   // almacenamiento de datos
   const [data, setData] = useState([]);
   // configuracion del IA
-  const apiKey = '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';
+  const apiKey = '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';
   const apiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
   // texto de ingreso
   const [textInput, setTextInput] = useState('');
 
 
+
   // funcion para el chat
   const handleSend = async () => {
     const prompt = textInput;
+    const maxTokens = 150; // Limita la longitud de la respuesta generada
+    const temperature = 0.1; // Ajusta la temperatura para equilibrar coherencia y diversidad
+
 
     try {
       const response = await axios.post(
@@ -22,8 +27,8 @@ const ChatGPT = () => {
         {
           // Configuracion de los token
           prompt: prompt,
-          max_tokens: 100,
-          temperature: 1,
+          max_tokens: maxTokens,
+          temperature: temperature,
         },
         {
           headers: {
@@ -75,7 +80,7 @@ const ChatGPT = () => {
         placeholder="Pregunta rápido"
       />
       <TouchableOpacity style={styles.button} onPress={handleSend}>
-        <Text style={styles.buttonText}>Aplasta chcha</Text>
+        <Text style={styles.buttonText}>Enviar Pregunta</Text>
       </TouchableOpacity>
     </View>
   );

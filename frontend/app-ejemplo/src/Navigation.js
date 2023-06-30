@@ -7,6 +7,7 @@ import { StyleSheet } from "react-native";
 import Listcomponent from "./components/list/List";
 import Name from "./components/nombre/Name";
 import ChatGPT from "./components/openai/Chatgpt";
+import ChatGPTInteligente from "./components/openai/ChatgptInteligente";
 
 
 const tab = createBottomTabNavigator();
@@ -38,7 +39,7 @@ const Navigation = () => {
             }}>
             </tab.Screen>
 
-            <tab.Screen name="ChatGPT" component={ChatGPT} options={{
+            <tab.Screen name="ChatGPT" component={ChatGPTInteligente} options={{
                 tabBarLabel: "ChatGPT",
                 tabBarIcon: ({ color, size }) => {
                     <MaterialCommunityIcons name="clipboard-list" color={color} size={size} />
