@@ -6,7 +6,7 @@ const twitter = <Icon name="twitter" size={30} color={"black"}/>
 const facebook = <Icon name="facebook" size={30} color={"black"}/>
 const instagram = <Icon name="instagram" size={30} color={"black"}/>
 const linkdIn = <Icon name="linkedin" size={30} color={"black"}/>
-const tiktok = <Icon name="tiktok" size={30} color={"black"}/>
+const tiktok = <Icon name="music" size={30} color={"black"}/>
 
 const ProfileCard = () => {
     const user = { 

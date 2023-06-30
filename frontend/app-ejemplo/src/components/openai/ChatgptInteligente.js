@@ -3,7 +3,7 @@ import { TextInput, View, StyleSheet, Text, FlatList, TouchableOpacity } from "r
 import { OpenAIApi, Configuration } from 'openai'
 
 const conf = new Configuration({
-    apiKey: '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'
+    apiKey: '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'
 })
 
 const openai = new OpenAIApi(conf)
@@ -64,7 +64,7 @@ const ChatGPTInteligente = () => {
                 <Text style={styles.buttonText}>Preguntar</Text>
             </TouchableOpacity>
             <View>
-                <Text>Numero de Tokens</Text>
+                <Text>Numero de Tokens {contadorToken}</Text>
             </View>
         </View>
     );
