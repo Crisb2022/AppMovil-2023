@@ -1,72 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import { View, TextInput, Button, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import { Configuration, OpenAIApi } from 'openai'
+import React, { useState } from "react";
+import { TextInput, View, StyleSheet, Text, FlatList, TouchableOpacity } from "react-native";
+import { OpenAIApi, Configuration } from 'openai'
 
+const conf = new Configuration({
+    apiKey: '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'
+})
+
+const openai = new OpenAIApi(conf)
 
 const ChatGPTInteligente = () => {
     const [data, setData] = useState([]);
-    const [messages, setMessages] = useState([]);
-    const [textInput, setTextInput] = useState('');
-    const apiKey = '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'
-    const configuration = new Configuration({
-        apiKey,
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`,
-        },
-    })
+    const [prompt, setPrompt] = useState('')
 
-    const openai = new OpenAIApi(configuration);
-
-
-    const sendMessage = async () => {
+    const message = async () => {
+        // Grupo 1
         try {
-            const response = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: textInput,
+            const completion = await openai.createCompletion({
+                model: 'text-davinci-003',
+                prompt: 'Mostrar el resultado en binario de: '+prompt,
                 temperature: 0.1,
-                max_tokens: 150,
-                n: 1,
-            })
-            const respuesta = response?.data?.choices[0]?.text?.trim();
-            setMessages([...messages, { content: respuesta, sender: 'bot' }]);
-
-            setTextInput('');
+                max_tokens: 150
+            },
+            )
+            console.log(completion)
+            const result = completion.data.choices[0].text;
+            contadorToken(result);
+            console.log(contadorToken);
+            setData([...data, { type: 'user', text: prompt }, { type: 'bot', text: result }]);
+            setPrompt('');
         } catch (error) {
-
+            console.log(error)
         }
+    };
+
+    function contadorToken(result){
+        const tokenCount = result.split(' ').length;
+        return tokenCount;
     }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Hola soy un chat</Text>
+            <Text style={styles.title}>Hola, puedes preguntarme cualquier duda!</Text>
             <FlatList
                 data={data}
-                keyExtractor={(item, index) => index.toString()}
+                keyExtractor={(index) => index.toString()}
                 style={styles.body}
                 renderItem={({ item }) => (
-                    <View style={{ flexDirection: 'row', padding: 10 }}>
-                        <Text style={{ fontWeight: 'bold', color: item.type === 'user' ? 'blue' : 'black' }}>
-                            {item.type === 'user' ? 'Tu: ' : 'Bot: '}
+                    <View style={{ flexDirection: 'row', padding: 5 }}>
+                        <Text style={{ fontWeight: 'bold', color: item.type === 'user' ? '#DE5F65' : '#1635BE' }}>
+                            {item.type === 'user' ? 'User: ' : 'Chat: '}
                         </Text>
-                        <Text style={styles.bot}>{item.text}</Text>
+                        <Text >{item.text}</Text>
                     </View>
                 )}
             />
             <TextInput
                 style={styles.input}
-                value={textInput}
-                onChangeText={(text) => setTextInput(text)}
-                placeholder="Pregunta rápido"
+                value={prompt}
+                onChangeText={(text) => setPrompt(text)}
+                placeholder="Escribir algo..."
             />
-            <TouchableOpacity style={styles.button} onPress={sendMessage}>
-                <Text style={styles.buttonText}>Enviar Pregunta</Text>
+            <TouchableOpacity style={styles.button} onPress={message}>
+                <Text style={styles.buttonText}>Preguntar</Text>
             </TouchableOpacity>
+            <View>
+                <Text>Numero de Tokens</Text>
+            </View>
         </View>
     );
-}
 
-const styles = {
+
+}
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
@@ -79,7 +84,6 @@ const styles = {
         marginBottom: 20,
     },
     body: {
-        flex: 1,
         width: '100%',
     },
     input: {
@@ -89,20 +93,19 @@ const styles = {
         borderColor: 'gray',
         marginBottom: 10,
         paddingHorizontal: 10,
+        fontSize:15
     },
     button: {
-        backgroundColor: 'blue',
+        backgroundColor: '#DE5F65',
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 5,
     },
     buttonText: {
         color: 'white',
-        fontWeight: 'bold',
-    },
-    bot: {
-        flex: 1,
-    },
-};
+        fontSize: 17,
+        textAlign: 'center'
+    }
+})
 
-export default ChatGPTInteligente;
+export default ChatGPTInteligente
