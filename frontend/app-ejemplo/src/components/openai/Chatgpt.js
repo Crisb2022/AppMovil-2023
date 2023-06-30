@@ -6,7 +6,7 @@ const ChatGPT = () => {
   // almacenamiento de datos
   const [data, setData] = useState([]);
   // configuracion del IA
-  const apiKey = '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';
+  const apiKey = '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';
   const apiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
   // texto de ingreso
   const [textInput, setTextInput] = useState('');
@@ -22,8 +22,8 @@ const ChatGPT = () => {
         {
           // Configuracion de los token
           prompt: prompt,
-          max_tokens: 1024,
-          temperature: 0.5,
+          max_tokens: 100,
+          temperature: 1,
         },
         {
           headers: {
@@ -34,7 +34,6 @@ const ChatGPT = () => {
       );
 
       const text = response.data.choices[0].text;
-      console.log(text);
       setData([...data, { type: 'user', text: textInput }, { type: 'bot', text: text }]);
       setTextInput('');
     } catch (error) {
@@ -62,7 +61,7 @@ const ChatGPT = () => {
         style={styles.body}
         renderItem={({ item }) => (
           <View style={{ flexDirection: 'row', padding: 10 }}>
-            <Text style={{ fontWeight: 'bold', color: item.type === 'user' ? 'green' : 'red' }}>
+            <Text style={{ fontWeight: 'bold', color: item.type === 'user' ? 'blue' : 'black' }}>
               {item.type === 'user' ? 'Tu: ' : 'Bot: '}
             </Text>
             <Text style={styles.bot}>{item.text}</Text>
