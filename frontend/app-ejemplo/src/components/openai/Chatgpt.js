@@ -6,7 +6,7 @@ const ChatGPT = () => {
   // almacenamiento de datos
   const [data, setData] = useState([]);
   // configuracion del IA
-  const apiKey = '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';
+  const apiKey = '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';
   const apiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
   // texto de ingreso
   const [textInput, setTextInput] = useState('');
