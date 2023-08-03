@@ -216,4 +216,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ChatGPTInteligente
+export default ChatGPTInteligente;
