@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TextInput, View, StyleSheet, Text, FlatList, TouchableOpacity, Modal } from "react-native";
 import { OpenAIApi, Configuration } from 'openai'
-import {Text, View, StyleSheet, Button, TextInput} from "react-native";
 import * as ExpoDocumentPicker from "expo-document-picker";
 
 const conf = new Configuration({
