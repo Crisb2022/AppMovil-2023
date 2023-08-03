@@ -68,39 +68,6 @@ const ChatGPTInteligente = () => {
     
         }
 
-        const uploadFile = () => {
-    const [pdfDoc, setPdfDoc] = useState()
-    const [pregunta, setPregunta] = useState('')
-    const [result, setResult] = useState('')
-
-
-    const handleFilePicker = async () => {
-        let result = await ExpoDocumentPicker.getDocumentAsync({ copyToCacheDirectory: true });
-        setPdfDoc(result.file)
-    }
-    const handleUpload = async () => {
-        try {
-            const data = new FormData()
-            data.append('question', pregunta)
-            data.append('file', pdfDoc)
-            console.log(data.get('file'))
-            const response = await fetch('http://localhost:9006/upload', {
-                method: 'POST',
-                body: data
-            })
-            if (response.ok) {
-                setPregunta('')
-                const responseJSON = await response.json()
-                setResult(responseJSON.text)
-            }
-
-
-        } catch (error) {
-            console.log(error)
-        }
-
-    }
-
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Hola, puedes preguntarme cualquier duda!</Text>
