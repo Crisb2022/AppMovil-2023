@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { TextInput, View, StyleSheet, Text, FlatList, TouchableOpacity } from "react-native";
 import { OpenAIApi, Configuration } from 'openai'
+import {Text, View, StyleSheet, Button, TextInput} from "react-native";
+import * as ExpoDocumentPicker from "expo-document-picker";
 
 const conf = new Configuration({
     apiKey: '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'
@@ -8,16 +10,14 @@ const conf = new Configuration({
 
 const openai = new OpenAIApi(conf)
 
-const ChatGPTInteligente = () => {
-    const [data, setData] = useState([]);
-    const [prompt, setPrompt] = useState('')
+
 
     const message = async () => {
         // Grupo 1
         try {
             const completion = await openai.createCompletion({
                 model: 'text-davinci-003',
-                prompt: 'Mostrar el resultado en binario de: '+prompt,
+                prompt: 'Mostrar el resultado en binario de: ' + prompt,
                 temperature: 0.1,
                 max_tokens: 150
             },
@@ -33,10 +33,39 @@ const ChatGPTInteligente = () => {
         }
     };
 
-    function contadorToken(result){
+    function contadorToken(result) {
         const tokenCount = result.split(' ').length;
         return tokenCount;
     }
+
+    const ChatGPTInteligente = () => {
+        const [data, setData] = useState([]);
+        const [prompt, setPrompt] = useState('')
+        const [file, setFile] = useState()
+        const [question, setQuestion] = useState('')
+        const [resultado, setResultado] = useState('')
+    
+    
+        const handleUpload = async () => {
+            try {
+                const data = new FormData()
+                data.append('question', question)
+                data.append('file', file)
+                console.log(data.get('file'))
+                const response = await fetch('http://localhost:9003/upload', {
+                    method: 'POST',
+                    body: data
+                })
+                if (response.ok) {
+                    setQuestion('')
+                    const responseJSON = await response.json()
+                    setResultado(responseJSON.text)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+    
+        }
 
     return (
         <View style={styles.container}>
@@ -66,6 +95,13 @@ const ChatGPTInteligente = () => {
             <View>
                 <Text>Numero de Tokens {contadorToken}</Text>
             </View>
+            <View>
+                <Button title={'Selecciona PDF'} onPress={handleFilePicker} />
+                <TextInput style={styles.input} value={question} onChangeText={setQuestion}
+                    placeholder={'Ingresa tu pregunta'} />
+                <Button title={'send'} onPress={handleUpload} />
+                <Text>{result}</Text>
+            </View>
         </View>
     );
 
@@ -93,7 +129,7 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         marginBottom: 10,
         paddingHorizontal: 10,
-        fontSize:15
+        fontSize: 15
     },
     button: {
         backgroundColor: '#DE5F65',
@@ -105,6 +141,12 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 17,
         textAlign: 'center'
+    },  input: {
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 10,
+        margin: 10
     }
 })
 

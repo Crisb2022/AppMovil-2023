@@ -40,7 +40,7 @@ const Navigation = () => {
             </tab.Screen>
 
             <tab.Screen name="ChatGPT" component={ChatGPTInteligente} options={{
-                tabBarLabel: "ChatGPT",
+                tabBarLabel: "ChatGPT Pregunta o Sube tu documento",
                 tabBarIcon: ({ color, size }) => {
                     <MaterialCommunityIcons name="clipboard-list" color={color} size={size} />
                 }
